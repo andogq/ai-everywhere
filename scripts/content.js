@@ -11,6 +11,11 @@ const REPLACEMENT_TERMS = [
     "the interns",
     "the intern",
     "a group of interns",
+    "unpaid interns",
+    "unpaid intern",
+    "the unpaid interns",
+    "the unpaid intern",
+    "a group of unpaid interns",
 ];
 
 function randomTerm() {
