@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "AI Everywhere",
+  "version": "1.0",
+  "description": "Introduce AI into your favourite apps and websites that are too slow to integrate it themselves!",
+  "content_scripts": [
+    {
+      "js": ["scripts/content.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
