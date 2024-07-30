@@ -3,6 +3,9 @@
   "name": "AI Everywhere",
   "version": "1.0",
   "description": "Introduce AI into your favourite apps and websites that are too slow to integrate it themselves!",
+  "icons": {
+    "128": "icon128.png"
+  },
   "content_scripts": [
     {
       "js": ["scripts/content.js"],
