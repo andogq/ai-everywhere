@@ -1,5 +1,5 @@
 const FLAGS = "gmi";
-const SEARCH_TERMS = ["ai", "artificial intelligence"].flatMap((term) => [
+const SEARCH_TERMS = ["ai", "artificial intelligence", "a.i."].flatMap((term) => [
     new RegExp(`^${term}`, FLAGS),
     new RegExp(`(\\W)${term}(\\W)`, FLAGS),
     new RegExp(`${term}$`, FLAGS),
