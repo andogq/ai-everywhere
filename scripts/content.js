@@ -11,13 +11,9 @@ const SEARCH_TERMS = ["ai", "artificial intelligence", "a\\.i\\."].flatMap(
 const REPLACEMENT_TERMS = [
     "interns",
     "intern",
-    "the interns",
-    "the intern",
     "a group of interns",
     "unpaid interns",
     "unpaid intern",
-    "the unpaid interns",
-    "the unpaid intern",
     "a group of unpaid interns",
 ];
 
