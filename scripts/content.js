@@ -1,9 +1,12 @@
 const FLAGS = "gmi";
-const SEARCH_TERMS = ["ai", "artificial intelligence", "a.i."].flatMap((term) => [
-    new RegExp(`^${term}`, FLAGS),
-    new RegExp(`(\\W)${term}(\\W)`, FLAGS),
-    new RegExp(`${term}$`, FLAGS),
-]);
+const SEARCH_TERMS = ["ai", "artificial intelligence", "a\\.i\\."].flatMap(
+    (term) => [
+        [new RegExp(`^${term}$`, FLAGS), [false, false]],
+        [new RegExp(`^${term}(\\W)`, FLAGS), [false, true]],
+        [new RegExp(`(\\W)${term}$`, FLAGS), [true, false]],
+        [new RegExp(`(\\W)${term}(\\W)`, FLAGS), [true, true]],
+    ],
+);
 
 const REPLACEMENT_TERMS = [
     "interns",
@@ -34,15 +37,19 @@ const walker = document.createTreeWalker(
 let node;
 while ((node = walker.nextNode())) {
     node.nodeValue = SEARCH_TERMS.reduce(
-        (value, regex) =>
-            value.replaceAll(regex, (_, p1, p2) => {
-                // If this regex has capture groups, ensure they're retained in the result
-                if (typeof p1 === "string" && typeof p2 === "string") {
-                    return p1 + randomTerm() + p2;
+        (value, [regex, [start, end]]) =>
+            value.replaceAll(regex, (_, ...groups) => {
+                let term = randomTerm();
+
+                if (start) {
+                    term = groups.shift() + term;
                 }
 
-                // No capture group, just random term
-                return randomTerm();
+                if (end) {
+                    term += groups.shift();
+                }
+
+                return term;
             }),
         node.nodeValue,
     );
